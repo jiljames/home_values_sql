@@ -52,4 +52,42 @@ GROUP BY state
 ORDER BY avg_value
 
 
+--What is the percent change 180 in average home values from 2007 to 2017 by state?
+--How about from 1997 to 2017?
+--Hint: We can use the WITH clause to create temporary tables containing the average home values for each of those years, then join them together to compare the change over time.
+
+WITH year1997 AS (
+	SELECT state, substr(date,1,4) AS  "year", AVG(value) AS "avg"
+	FROM home_value_data
+	WHERE year = "1997"
+	GROUP BY state
+	), year2007 AS (
+	SELECT state, substr(date,1,4) AS  "year", AVG(value) AS "avg"
+	FROM home_value_data
+	WHERE year = "2007"
+	GROUP BY state
+	), year2017 AS ( 
+	SELECT state, substr(date,1,4) AS  "year", AVG(value) AS "avg"
+	FROM home_value_data
+	WHERE year = "2017"
+	GROUP BY state
+	)
+SELECT year1997.state, ((year2017.avg - year2007.avg)/year2007.avg)*100 AS "2007 - 2017 % change", 
+((year2017.avg - year1997.avg)/year1997.avg)*100 AS "1997 - 2017 % change"
+FROM year2007
+JOIN year2017
+ON year2007.state = year2017.state
+JOIN year1997
+ON year2007.state = year1997.state;
+
+
+
+
+
+
+--How would you describe the trend in home values for each state from 1997 to 2017? How about from 2007 to 2017? Which states would you recommend for making real estate investments?
+
+--Overtime there home values have been increasing. While from 2007 to 2017 there have been some states with decreasing vlues, from  1997 to 2017 the trend is generally increasing. Home values in CA and DC have risen the most.
+-- 	
+
 
