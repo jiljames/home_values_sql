@@ -2,6 +2,7 @@
 Investigation of Home Values Over Time Using SQL
 
 The Dataset used in this project can be found here https://drive.google.com/file/d/1Ew2rS1O_Mu5dUh59rlVw9IhCy_xrwftk/view
+Project Idea and Questions come from https://discuss.codecademy.com/t/data-science-independent-project-4-home-value-trends/419948
 See home_values.sql to see the SQL code that answers the questions below.
 
 Initial Exploration of the Database:
@@ -18,3 +19,8 @@ Analysis: Explore how home value differ by region as well as change over time.
     Using the most recent month of data available, which states have the highest average home values? How about the lowest?
     Which states have the highest/lowest average home values for the year of 2017? What about for the year of 2007? 1997?
 
+Additional Questions:
+
+    What is the percent change 180 in average home values from 2007 to 2017 by state? How about from 1997 to 2017?
+        Hint: We can use the WITH clause to create temporary tables containing the average home values for each of those years, then join them together to compare the change over time.
+    How would you describe the trend in home values for each state from 1997 to 2017? How about from 2007 to 2017? Which states would you recommend for making real estate investments?
